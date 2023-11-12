@@ -1,4 +1,4 @@
-import 'package:alt_persian_date_picker/src/datetime_picker_theme.dart';
+import '../src/FarsiDatePickerTheme.dart';
 import 'package:flutter/material.dart';
 
 import '../src/date_model.dart';
@@ -9,26 +9,26 @@ class SeparateHeaderWidget extends AnimatedWidget {
   final bool monthSlide;
   final AnimationController controller;
   final DatePickerModel pickerModel;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final VoidCallback changeMonthPrev;
   final VoidCallback changeMonthNext;
   final VoidCallback changeYearPrev;
   final VoidCallback changeYearNext;
   bool isSlideForward = false;
 
-  SeparateHeaderWidget(
-      {Key key,
-      @required this.pickerModel,
-      @required this.theme,
-      @required this.controller,
-      @required this.changeMonthPrev,
-      @required this.changeMonthNext,
-      @required this.changeYearPrev,
-      @required this.changeYearNext,
-      this.isSlideForward,
-      this.monthSlide,
-      this.yearSlide})
-      : super(key: key, listenable: controller);
+  SeparateHeaderWidget({
+    Key? key,
+    required this.pickerModel,
+    required this.theme,
+    required this.controller,
+    required this.changeMonthPrev,
+    required this.changeMonthNext,
+    required this.changeYearPrev,
+    required this.changeYearNext,
+    required this.isSlideForward,
+    required this.monthSlide,
+    required this.yearSlide,
+  }) : super(key: key, listenable: controller);
 
   @override
   Widget build(BuildContext context) {

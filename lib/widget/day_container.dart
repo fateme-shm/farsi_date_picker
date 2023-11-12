@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:alt_persian_date_picker/farsi_date_picker.dart';
+import 'package:farsi_date_picker/farsi_date_picker.dart';
+
+import '../src/date_model.dart';
 
 // ignore: must_be_immutable
 class DayContainer extends StatelessWidget {
   final DatePickerModel pickerModel;
   final dynamic day;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final ValueChanged<int> onTap;
   bool _isDisable = false;
   bool _isBetweenRange = false;
@@ -13,15 +15,15 @@ class DayContainer extends StatelessWidget {
   bool _isEndRange = false;
 
   DayContainer({
-    Key key,
-    @required this.pickerModel,
-    @required this.theme,
-    @required this.onTap,
-    this.day,
+    Key? key,
+    required this.pickerModel,
+    required this.theme,
+    required this.onTap,
+    required this.day,
   }) {
     _isBetweenRange = day != '' ? pickerModel.isBetweenRanged(day) : false;
     _isStartRange = day != '' ? pickerModel.isStartRanged(day) : false;
-    _isEndRange = day != '' ? pickerModel.isEndRanged(day) : false;
+    _isEndRange = (day != '' ? pickerModel.isEndRanged(day) : false)!;
   }
 
   final cellWidth = 50.0;

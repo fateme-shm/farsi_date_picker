@@ -3,16 +3,18 @@ import 'package:farsi_date_picker/src/partition.dart';
 import 'package:farsi_date_picker/widget/main_button_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../src/date_model.dart';
+
 class AltYearPicker extends StatefulWidget {
   final YearPickerModel pickerModel;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final DateChangedCallback onConfirm;
 
   const AltYearPicker({
-    Key key,
-    this.pickerModel,
-    this.theme,
-    this.onConfirm,
+    Key? key,
+    required this.pickerModel,
+    required this.theme,
+    required this.onConfirm,
   }) : super(key: key);
   @override
   _AltYearPickerState createState() => _AltYearPickerState();
@@ -20,9 +22,9 @@ class AltYearPicker extends StatefulWidget {
 
 class _AltYearPickerState extends State<AltYearPicker>
     with TickerProviderStateMixin {
-  AnimationController controller;
-  AnimationController fadeController;
-  Animation<double> animation;
+  AnimationController? controller;
+  AnimationController? fadeController;
+  Animation<double>? animation;
   bool isSlideAnimated = false;
   bool isSweeped = false;
   List<Widget> yearsWidget = [];
@@ -33,10 +35,10 @@ class _AltYearPickerState extends State<AltYearPicker>
         AnimationController(duration: Duration(milliseconds: 150), vsync: this);
     fadeController = AnimationController(
         duration: Duration(milliseconds: 1000), vsync: this);
-    animation = CurvedAnimation(parent: controller, curve: Curves.easeInOut)
+    animation = CurvedAnimation(parent: controller!, curve: Curves.easeInOut)
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
-          controller.reverse();
+          controller!.reverse();
           if (widget.pickerModel.arrowType == "next")
             isSlideAnimated = true;
           else
@@ -44,19 +46,19 @@ class _AltYearPickerState extends State<AltYearPicker>
         }
       });
     super.initState();
-    fadeController.forward();
+    fadeController!.forward();
   }
 
   @override
   void dispose() {
-    fadeController.dispose();
-    controller.dispose();
+    fadeController!.dispose();
+    controller!.dispose();
     super.dispose();
   }
 
   void _changePrev() {
     widget.pickerModel.setArrowType("prev");
-    controller.forward();
+    controller!.forward();
     isSlideAnimated = true;
     widget.pickerModel.changePrevYear();
     setState(() {});
@@ -64,7 +66,7 @@ class _AltYearPickerState extends State<AltYearPicker>
 
   void _changeNext() {
     widget.pickerModel.setArrowType("next");
-    controller.forward();
+    controller!.forward();
     isSlideAnimated = false;
     widget.pickerModel.changeNextYear();
     setState(() {});
@@ -153,7 +155,7 @@ class _AltYearPickerState extends State<AltYearPicker>
                   thickness: 1,
                   indent: 10,
                   endIndent: 10,
-                  color: Colors.grey[300].withOpacity(.7),
+                  color: Colors.grey[300]!.withOpacity(.7),
                 ),
                 SizedBox(
                   height: 8,
@@ -209,16 +211,16 @@ class _AltYearPickerState extends State<AltYearPicker>
           return Container(
             padding: EdgeInsets.symmetric(vertical: 3),
             child: AnimatedBuilder(
-              animation: animation,
+              animation: animation!,
               builder: (context, child) => Transform(
                 transform: Matrix4.translationValues(
-                    animation.value * (isSlideAnimated ? 300 : -300), 0, 0),
+                    animation!.value * (isSlideAnimated ? 300 : -300), 0, 0),
                 child: Opacity(
-                  opacity: 1 - animation.value,
+                  opacity: 1 - animation!.value,
                   child: AnimatedBuilder(
-                    animation: fadeController,
+                    animation: fadeController!,
                     builder: (context, child) => Opacity(
-                      opacity: fadeController.value,
+                      opacity: fadeController!.value,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: row,
@@ -245,14 +247,14 @@ class _AltYearPickerState extends State<AltYearPicker>
           icon: Icon(Icons.chevron_left),
         ),
         AnimatedBuilder(
-          animation: animation,
+          animation: animation!,
           builder: (context, child) => GestureDetector(
             onTap: () {},
             child: Transform(
               transform: Matrix4.translationValues(
-                  animation.value * (isSlideAnimated ? 100 : -100), 0, 0),
+                  animation!.value * (isSlideAnimated ? 100 : -100), 0, 0),
               child: Opacity(
-                opacity: 1 - animation.value,
+                opacity: 1 - animation!.value,
                 child: SizedBox(
                   width: 50,
                   child: Center(

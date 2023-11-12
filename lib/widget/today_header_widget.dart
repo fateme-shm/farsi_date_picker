@@ -1,4 +1,4 @@
-import 'package:alt_persian_date_picker/src/datetime_picker_theme.dart';
+import 'package:farsi_date_picker/src/FarsiDatePickerTheme.dart';
 import 'package:flutter/material.dart';
 
 import '../src/date_model.dart';
@@ -7,19 +7,19 @@ import '../src/date_model.dart';
 class TodayHeaderWidget extends AnimatedWidget {
   final AnimationController controller;
   final DatePickerModel pickerModel;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final VoidCallback changeMonthPrev;
   final VoidCallback changeMonthNext;
   bool isSlideForward = false;
 
   TodayHeaderWidget({
-    Key key,
-    @required this.pickerModel,
-    @required this.theme,
-    @required this.controller,
-    @required this.changeMonthPrev,
-    @required this.changeMonthNext,
-    this.isSlideForward,
+    Key? key,
+    required this.pickerModel,
+    required this.theme,
+    required this.controller,
+    required this.changeMonthPrev,
+    required this.changeMonthNext,
+    required this.isSlideForward,
   }) : super(key: key, listenable: controller);
 
   @override

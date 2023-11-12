@@ -1,17 +1,15 @@
 library farsi_date_picker;
 
 export 'package:farsi_date_picker/src/picker_enum.dart';
-export 'package:farsi_date_picker/src/datetime_picker_theme.dart';
-export 'package:farsi_date_picker/src/date_model.dart';
-
+export 'package:farsi_date_picker/src/FarsiDatePickerTheme.dart';
 import 'package:farsi_date_picker/pages/alt_date_picker.dart';
 import 'package:farsi_date_picker/pages/alt_month_picker.dart';
 import 'package:farsi_date_picker/pages/alt_timeline_picker.dart';
 import 'package:farsi_date_picker/pages/alt_year_picker.dart';
-import 'package:farsi_date_picker/src/date_model.dart';
-import 'package:farsi_date_picker/src/datetime_picker_theme.dart';
-import 'package:farsi_date_picker/src/picker_enum.dart';
 import 'package:flutter/material.dart';
+
+import 'farsi_date_picker.dart';
+import 'src/date_model.dart';
 
 typedef DateChangedCallback(String time);
 typedef DateCancelledCallback();
@@ -20,10 +18,10 @@ class DatePicker {
   static Future showDatePicker(
     BuildContext context,
     PickerEnum type, {
-    DateChangedCallback onConfirm,
-    DateCancelledCallback onCancel,
-    DatePickerTheme theme,
-    BasePickerModel pickerModel,
+    required DateChangedCallback onConfirm,
+    required DateCancelledCallback onCancel,
+    required FarsiDatePickerTheme theme,
+    required BasePickerModel pickerModel,
   }) async {
     return Navigator.push(
       context,
@@ -39,23 +37,21 @@ class DatePicker {
 }
 
 class _DatePickerRoute<T> extends PopupRoute<T> {
-  final PickerEnum type;
-  final DateChangedCallback onConfirm;
-  final DateCancelledCallback onCancel;
-  final BasePickerModel _pickerModel;
-  final DatePickerTheme _theme;
-  AnimationController _animationController;
+  late final PickerEnum type;
+  late final DateChangedCallback onConfirm;
+  late final DateCancelledCallback onCancel;
+  late final BasePickerModel _pickerModel;
+  late final FarsiDatePickerTheme _theme;
+  late AnimationController _animationController;
 
   _DatePickerRoute({
     this.type = PickerEnum.month,
-    this.onConfirm,
-    this.onCancel,
-    RouteSettings settings,
-    BasePickerModel pickerModel,
-    DatePickerTheme theme,
-  })  : this._pickerModel = pickerModel ?? MonthPickerModel(),
-        this._theme = theme ?? DatePickerTheme(),
-        super(settings: settings);
+    required this.onConfirm,
+    required this.onCancel,
+    RouteSettings? settings,
+    required BasePickerModel pickerModel,
+    required FarsiDatePickerTheme theme,
+  });
 
   @override
   Color get barrierColor => Colors.black54;
@@ -73,7 +69,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   AnimationController createAnimationController() {
     assert(_animationController == null);
     _animationController =
-        BottomSheet.createAnimationController(navigator.overlay);
+        BottomSheet.createAnimationController(navigator!.overlay!);
     return _animationController;
   }
 
@@ -101,11 +97,11 @@ class _DatePickerComponent extends StatefulWidget {
   final DateChangedCallback onConfirm;
 
   const _DatePickerComponent({
-    Key key,
-    this.route,
-    this.type,
-    this.pickerModel,
-    this.onConfirm,
+    Key? key,
+    required this.route,
+    required this.type,
+    required this.pickerModel,
+    required this.onConfirm,
   }) : super(key: key);
 
   @override
@@ -113,7 +109,7 @@ class _DatePickerComponent extends StatefulWidget {
 }
 
 class __DatePickerComponentState extends State<_DatePickerComponent> {
-  DatePickerTheme theme;
+  late FarsiDatePickerTheme theme;
 
   @override
   void initState() {
@@ -151,7 +147,7 @@ class __DatePickerComponentState extends State<_DatePickerComponent> {
         break;
       case PickerEnum.timeline:
         return AltTimeLinePicker(
-          pickerModel: widget.pickerModel,
+          pickerModel: widget.pickerModel!,
           theme: theme,
           onConfirm: widget.onConfirm,
         );
@@ -165,7 +161,7 @@ class __DatePickerComponentState extends State<_DatePickerComponent> {
   Widget build(BuildContext context) {
     return SlideBuilder(
       alignment: Alignment.bottomCenter,
-      animation: widget.route.animation,
+      animation: widget.route.animation!,
       builder: (context, child, a) => child,
       // child:
       // FractionallySizedBox(
@@ -197,19 +193,19 @@ class SlideBuilder extends AnimatedWidget {
   final Widget child;
 
   SlideBuilder({
-    Key key,
-    @required this.animation,
-    @required this.alignment,
-    @required this.builder,
-    this.child,
+    Key? key,
+    required this.animation,
+    required this.alignment,
+    required this.builder,
+    required this.child,
   })  : innerAlignment = -alignment,
         super(key: key, listenable: animation);
 
   @override
   Widget build(BuildContext context) {
     final a = Alignment.lerp(Alignment.center, alignment, animation.value);
-    final widthFactor = alignment.x == 0 ? null : a.x.abs();
-    final heightFactor = alignment.y == 0 ? null : a.y.abs();
+    final widthFactor = alignment.x == 0 ? null : a!.x.abs();
+    final heightFactor = alignment.y == 0 ? null : a!.y.abs();
     return ClipRect(
       child: Align(
         alignment: alignment,

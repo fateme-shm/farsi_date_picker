@@ -9,11 +9,11 @@ class SwapPageBuilder extends StatelessWidget {
   final Widget widget;
 
   SwapPageBuilder({
-    Key key,
+    Key? key,
     bool isSweeped = false,
-    @required this.dragUpdate,
-    @required this.dragEnd,
-    @required this.widget,
+    required this.dragUpdate,
+    required this.dragEnd,
+    required this.widget,
   })  : _isSweeped = isSweeped,
         super(key: key);
 

@@ -7,10 +7,10 @@ class MainTextFormWidget extends StatefulWidget {
   final TextInputType keyboardType;
 
   const MainTextFormWidget({
-    Key key,
+    Key? key,
     this.hintText = "",
-    this.masks,
-    this.keyboardType,
+    required this.masks,
+    required this.keyboardType,
   }) : super(key: key);
 
   @override

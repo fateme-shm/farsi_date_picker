@@ -1,5 +1,4 @@
 import 'package:farsi_date_picker/farsi_date_picker.dart';
-import 'package:farsi_date_picker/src/datetime_picker_theme.dart';
 import 'package:farsi_date_picker/src/partition.dart';
 import 'package:farsi_date_picker/widget/custom_date_header_widget.dart';
 import 'package:farsi_date_picker/widget/day_container.dart';
@@ -9,16 +8,18 @@ import 'package:farsi_date_picker/widget/swap_page_builder.dart';
 import 'package:farsi_date_picker/widget/today_header_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../src/date_model.dart';
+
 class AltDatePicker extends StatefulWidget {
   final DatePickerModel pickerModel;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final DateChangedCallback onConfirm;
 
   const AltDatePicker({
-    Key key,
-    this.pickerModel,
-    this.theme,
-    this.onConfirm,
+    Key? key,
+    required this.pickerModel,
+    required this.theme,
+    required this.onConfirm,
   }) : super(key: key);
 
   @override
@@ -27,8 +28,8 @@ class AltDatePicker extends StatefulWidget {
 
 class _AltDatePickerState extends State<AltDatePicker>
     with TickerProviderStateMixin {
-  AnimationController controller;
-  TextEditingController dateCtl;
+  AnimationController? controller;
+  TextEditingController? dateCtl;
   final cellWidth = 50.0;
   final cellHeight = 35.0;
   bool _isSweeped = false;
@@ -43,9 +44,9 @@ class _AltDatePickerState extends State<AltDatePicker>
     controller =
         AnimationController(duration: Duration(milliseconds: 150), vsync: this);
 
-    controller.addStatusListener((status) {
+    controller?.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        controller.reverse();
+        controller?.reverse();
         if (widget.pickerModel.arrowType == "next")
           isSlideAnimated = true;
         else
@@ -57,19 +58,19 @@ class _AltDatePickerState extends State<AltDatePicker>
 
   @override
   void dispose() {
-    dateCtl.dispose();
-    controller.dispose();
+    dateCtl?.dispose();
+    controller?.dispose();
     super.dispose();
   }
 
   initTextController() {
-    dateCtl.text =
+    dateCtl?.text =
         "${widget.pickerModel.getMonthName()} ${widget.pickerModel.getYear()}";
   }
 
   void other() {
     widget.pickerModel.setArrowType("prev");
-    controller.forward();
+    controller?.forward();
     isSlideAnimated = true;
     widget.pickerModel.changeMonth('other');
     monthSlide = true;
@@ -80,7 +81,7 @@ class _AltDatePickerState extends State<AltDatePicker>
 
   void _changeMonthPrev() {
     widget.pickerModel.setArrowType("prev");
-    controller.forward();
+    controller?.forward();
     isSlideAnimated = true;
     widget.pickerModel.changeMonth('prev');
     monthSlide = true;
@@ -91,7 +92,7 @@ class _AltDatePickerState extends State<AltDatePicker>
 
   void _changeMonthNext() {
     widget.pickerModel.setArrowType("next");
-    controller.forward();
+    controller?.forward();
     isSlideAnimated = false;
     widget.pickerModel.changeMonth('next');
     monthSlide = true;
@@ -102,7 +103,7 @@ class _AltDatePickerState extends State<AltDatePicker>
 
   void _changeYearPrev() {
     widget.pickerModel.setArrowType("prev");
-    controller.forward();
+    controller?.forward();
     isSlideAnimated = true;
     widget.pickerModel.changeYear('prev');
     monthSlide = false;
@@ -113,7 +114,7 @@ class _AltDatePickerState extends State<AltDatePicker>
 
   void _changeYearNext() {
     widget.pickerModel.setArrowType("next");
-    controller.forward();
+    controller?.forward();
     isSlideAnimated = false;
     widget.pickerModel.changeYear('next');
     monthSlide = false;
@@ -139,7 +140,7 @@ class _AltDatePickerState extends State<AltDatePicker>
             if (widget.pickerModel.headerType == HeaderType.mix)
               TodayHeaderWidget(
                 //MixedHeaderWidget
-                controller: controller,
+                controller: controller!,
                 theme: widget.theme,
                 pickerModel: widget.pickerModel,
                 changeMonthPrev: _changeMonthPrev,
@@ -148,7 +149,7 @@ class _AltDatePickerState extends State<AltDatePicker>
               ),
             if (widget.pickerModel.headerType == HeaderType.seprated)
               SeparateHeaderWidget(
-                  controller: controller,
+                  controller: controller!,
                   theme: widget.theme,
                   pickerModel: widget.pickerModel,
                   changeMonthPrev: _changeMonthPrev,
@@ -160,8 +161,8 @@ class _AltDatePickerState extends State<AltDatePicker>
                   monthSlide: monthSlide),
             if (widget.pickerModel.headerType == HeaderType.writable)
               CustomDateHeaderWidget(
-                controller: controller,
-                dateCtl: dateCtl,
+                controller: controller!,
+                dateCtl: dateCtl!,
                 theme: widget.theme,
                 pickerModel: widget.pickerModel,
                 changeMonthPrev: _changeMonthPrev,
@@ -177,7 +178,7 @@ class _AltDatePickerState extends State<AltDatePicker>
               thickness: 1,
               indent: 10,
               endIndent: 10,
-              color: Colors.grey[300].withOpacity(.7),
+              color: Colors.grey[300]!.withOpacity(.7),
             ),
             SizedBox(
               height: 8,
@@ -227,7 +228,7 @@ class _AltDatePickerState extends State<AltDatePicker>
       widget: DaysTable(
         pickerModel: widget.pickerModel,
         theme: widget.theme,
-        controller: controller,
+        controller: controller!,
         isSlideAnimated: isSlideAnimated,
         onConfirm: widget.onConfirm,
       ),
@@ -258,18 +259,18 @@ class _AltDatePickerState extends State<AltDatePicker>
 
 class DaysTable extends StatefulWidget {
   final DatePickerModel pickerModel;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final AnimationController controller;
   final bool isSlideAnimated;
   final DateChangedCallback onConfirm;
 
   const DaysTable({
-    Key key,
-    @required this.pickerModel,
-    @required this.theme,
-    @required this.controller,
-    @required this.isSlideAnimated,
-    this.onConfirm,
+    Key? key,
+    required this.pickerModel,
+    required this.theme,
+    required this.controller,
+    required this.isSlideAnimated,
+    required this.onConfirm,
   }) : super(key: key);
 
   @override

@@ -1,25 +1,26 @@
-import 'package:alt_persian_date_picker/src/datetime_picker_theme.dart';
+
 import 'package:flutter/material.dart';
 
+import '../src/FarsiDatePickerTheme.dart';
 import '../src/date_model.dart';
 
 // ignore: must_be_immutable
 class MixedHeaderWidget extends AnimatedWidget {
   final AnimationController controller;
   final DatePickerModel pickerModel;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final VoidCallback changeMonthPrev;
   final VoidCallback changeMonthNext;
   bool isSlideForward = false;
 
   MixedHeaderWidget({
-    Key key,
-    @required this.pickerModel,
-    @required this.theme,
-    @required this.controller,
-    @required this.changeMonthPrev,
-    @required this.changeMonthNext,
-    this.isSlideForward,
+    Key? key,
+    required this.pickerModel,
+    required this.theme,
+    required this.controller,
+    required this.changeMonthPrev,
+    required this.changeMonthNext,
+    required this.isSlideForward,
   }) : super(key: key, listenable: controller);
 
   @override

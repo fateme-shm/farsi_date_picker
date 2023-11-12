@@ -1,18 +1,18 @@
-import 'package:alt_persian_date_picker/farsi_date_picker.dart';
-import 'package:alt_persian_date_picker/widget/main_text_form_widget.dart';
+import 'package:farsi_date_picker/farsi_date_picker.dart';
+import 'package:farsi_date_picker/widget/main_text_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class WritableDateFormWidget extends StatefulWidget {
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final TextEditingController dateCtl;
   final ValueChanged<String> onSubmitted;
 
   const WritableDateFormWidget({
-    Key key,
-    @required this.theme,
-    this.dateCtl,
-    @required this.onSubmitted,
+    Key? key,
+    required this.theme,
+    required this.dateCtl,
+    required this.onSubmitted,
   }) : super(key: key);
 
   @override
@@ -53,14 +53,14 @@ class _WritableDateFormWidgetState extends State<WritableDateFormWidget> {
             autofocus: true,
             readOnly: _isReadOnly,
             onFieldSubmitted: (value) {
-              if (_formKey.currentState.validate()) widget.onSubmitted(value);
+              if (_formKey.currentState!.validate()) widget.onSubmitted(value);
             },
             validator: (value) {
-              if (value.isEmpty) return "نباید خالی باشد";
+              if (value!.isEmpty) return "نباید خالی باشد";
               return null;
             },
             onChanged: (value) {
-              _formKey.currentState.validate();
+              _formKey.currentState!.validate();
             },
             decoration: widget.theme.inputDecoration == null
                 ? InputDecoration(

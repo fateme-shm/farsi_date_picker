@@ -1,17 +1,19 @@
-import 'package:alt_persian_date_picker/farsi_date_picker.dart';
+import 'package:farsi_date_picker/farsi_date_picker.dart';
 import 'package:flutter/material.dart';
+
+import '../src/date_model.dart';
 
 class TimeLineDateWidget extends StatelessWidget {
   final TimeLinePickerModel pickerModel;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final DateChangedCallback onConfirm;
   final int index;
 
   TimeLineDateWidget({
-    this.pickerModel,
-    this.theme,
-    this.onConfirm,
-    this.index,
+    required this.pickerModel,
+    required this.theme,
+    required this.onConfirm,
+    required this.index,
   });
 
   @override

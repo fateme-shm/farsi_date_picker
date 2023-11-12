@@ -1,13 +1,16 @@
-import 'package:alt_persian_date_picker/farsi_date_picker.dart';
+import 'package:farsi_date_picker/farsi_date_picker.dart';
 import 'package:flutter/material.dart';
+
+import '../src/date_model.dart';
 
 class TimelineMixHeaderWidget extends StatelessWidget {
   final TimeLinePickerModel pickerModel;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
+
   const TimelineMixHeaderWidget({
-    Key key,
-    this.pickerModel,
-    this.theme,
+    Key? key,
+    required this.pickerModel,
+    required this.theme,
   }) : super(key: key);
 
   @override

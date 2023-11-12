@@ -1,4 +1,3 @@
-
 import 'dart:collection';
 
 Iterable<List<T>> partition<T>(Iterable<T> iterable, int size) {
@@ -18,21 +17,21 @@ class _Partition<T> extends IterableBase<List<T>> {
 }
 
 class _PartitionIterator<T> implements Iterator<List<T>> {
-  final Iterator<T> _iterator;
-  final int _size;
-  List<T> _current;
+  final Iterator<T>? _iterator;
+  final int? _size;
+  List<T>? _current;
 
   _PartitionIterator(this._iterator, this._size);
 
   @override
-  List<T> get current => _current;
+  List<T> get current => _current!;
 
   @override
   bool moveNext() {
     var newValue = <T>[];
     var count = 0;
-    while (count < _size && _iterator.moveNext()) {
-      newValue.add(_iterator.current);
+    while (count < _size! && _iterator!.moveNext()) {
+      newValue.add(_iterator!.current);
       count++;
     }
     _current = (count > 0) ? newValue : null;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Migrate DiagnosticableMixin to Diagnosticable until
 // https://github.com/flutter/flutter/pull/51495 makes it into stable (v1.15.21)
-class DatePickerTheme with DiagnosticableTreeMixin {
+class FarsiDatePickerTheme extends DatePickerTheme with DiagnosticableTreeMixin  {
   final TextStyle cancelStyle;
   final TextStyle nowStyle;
   final TextStyle doneStyle;
@@ -24,7 +24,7 @@ class DatePickerTheme with DiagnosticableTreeMixin {
   // final double titleHeight;
   // final double itemHeight;
 
-  const DatePickerTheme({
+  const FarsiDatePickerTheme({
     this.cancelStyle = const TextStyle(color: Colors.black54, fontSize: 14),
     this.nowStyle = const TextStyle(color: Colors.white, fontSize: 14),
     this.doneStyle = const TextStyle(color: Colors.white, fontSize: 14),
@@ -62,6 +62,6 @@ class DatePickerTheme with DiagnosticableTreeMixin {
       errorBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: Colors.red),
       ),
-    ),
+    ), required super.data, required super.child,
   });
 }

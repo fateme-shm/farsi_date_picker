@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:alt_persian_date_picker/src/datetime_picker_theme.dart';
-import 'package:alt_persian_date_picker/widget/writable_date_form_widget.dart';
+import 'package:farsi_date_picker/src/FarsiDatePickerTheme.dart';
+import 'package:farsi_date_picker/widget/writable_date_form_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../src/date_model.dart';
@@ -11,7 +11,7 @@ class CustomDateHeaderWidget extends AnimatedWidget {
   final AnimationController controller;
   final TextEditingController dateCtl;
   final DatePickerModel pickerModel;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final VoidCallback changeMonthPrev;
   final VoidCallback changeYearPrev;
   final VoidCallback changeMonthNext;
@@ -20,17 +20,17 @@ class CustomDateHeaderWidget extends AnimatedWidget {
   bool isSlideForward = false;
 
   CustomDateHeaderWidget({
-    Key key,
-    @required this.pickerModel,
-    @required this.theme,
-    @required this.controller,
-    @required this.changeMonthPrev,
-    @required this.changeYearPrev,
-    @required this.changeMonthNext,
-    @required this.changeYearNext,
-    @required this.dateCtl,
-    this.onSubmitted,
-    this.isSlideForward,
+    Key? key,
+    required this.pickerModel,
+    required this.theme,
+    required this.controller,
+    required this.changeMonthPrev,
+    required this.changeYearPrev,
+    required this.changeMonthNext,
+    required this.changeYearNext,
+    required this.dateCtl,
+    required this.onSubmitted,
+    required this.isSlideForward,
   }) : super(key: key, listenable: controller);
 
   @override

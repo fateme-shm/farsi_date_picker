@@ -1,16 +1,16 @@
-import 'package:alt_persian_date_picker/farsi_date_picker.dart';
 import 'package:flutter/material.dart';
+import '../src/FarsiDatePickerTheme.dart';
 
 class MainButtonWidget extends StatelessWidget {
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final VoidCallback onConfirm;
   final VoidCallback onNow;
 
   const MainButtonWidget({
-    Key key,
-    @required this.theme,
-    @required this.onConfirm,
-    @required this.onNow,
+    Key? key,
+    required this.theme,
+    required this.onConfirm,
+    required this.onNow,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

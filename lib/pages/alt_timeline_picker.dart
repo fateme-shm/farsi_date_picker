@@ -1,20 +1,22 @@
 import 'package:farsi_date_picker/farsi_date_picker.dart';
-import 'package:farsi_date_picker/src/datetime_picker_theme.dart';
+import 'package:farsi_date_picker/src/FarsiDatePickerTheme.dart';
 import 'package:farsi_date_picker/widget/timeline_date_widget.dart';
 import 'package:farsi_date_picker/widget/timeline_mix_header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import '../src/date_model.dart';
+
 class AltTimeLinePicker extends StatefulWidget {
   final TimeLinePickerModel pickerModel;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final DateChangedCallback onConfirm;
 
   const AltTimeLinePicker({
-    Key key,
-    this.pickerModel,
-    this.theme,
-    this.onConfirm,
+    Key? key,
+    required this.pickerModel,
+    required this.theme,
+    required this.onConfirm,
   }) : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class AltTimeLinePicker extends StatefulWidget {
 }
 
 class _AltTimeLinePickerState extends State<AltTimeLinePicker> {
-  TimelineDatePickerController controller;
+  TimelineDatePickerController? controller;
   ScrollController _scrollController = ScrollController();
 
   @override
@@ -30,9 +32,8 @@ class _AltTimeLinePickerState extends State<AltTimeLinePicker> {
     controller = TimelineDatePickerController(widget.pickerModel);
     _init();
     super.initState();
-
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      controller.scrollToSelectedItem();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller!.scrollToSelectedItem();
     });
   }
 
@@ -60,10 +61,10 @@ class _AltTimeLinePickerState extends State<AltTimeLinePicker> {
     //calc padding(L+R)
     _padding =
         (widgetWidth - (maxRowChild * widget.pickerModel.width)) / maxRowChild;
-    controller.scrollController = _scrollController;
-    controller.shift = shiftPos;
-    controller.itemWidth = _padding + widget.pickerModel.width;
-    controller.padding = _padding;
+    controller!.scrollController = _scrollController;
+    controller!.shift = shiftPos;
+    controller!.itemWidth = _padding + widget.pickerModel.width;
+    controller!.padding = _padding;
   }
 
   dragend(e) {
@@ -126,8 +127,9 @@ class _AltTimeLinePickerState extends State<AltTimeLinePicker> {
 
 ///controller for scrolling the [HorizontalDatePickerWidget]
 class TimelineDatePickerController {
-  ScrollController scrollController;
+  ScrollController? scrollController;
   final TimeLinePickerModel pickerModel;
+
   TimelineDatePickerController(this.pickerModel);
 
   double shift = 0;
@@ -135,6 +137,7 @@ class TimelineDatePickerController {
   ///padding + width of Item
   double itemWidth = 0;
   double padding = 0;
+
   void scrollToSelectedItem([bool isEnableAnimation = true]) {
     _jumpToSelection();
   }
@@ -145,7 +148,7 @@ class TimelineDatePickerController {
     // double maxScrollExtent = scrollController.position.maxScrollExtent;
     // double offset = scrollController.offset;
     if (isEnableAnimation) {
-      scrollController.animateTo(
+      scrollController!.animateTo(
           pickerModel.calculateDateOffset(shift, itemWidth, padding),
           duration: const Duration(milliseconds: 300),
           curve: Curves.linear);

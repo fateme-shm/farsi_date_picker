@@ -6,21 +6,26 @@ import 'package:farsi_date_picker/src/convert_number.dart';
 
 abstract class BasePickerModel {
   void getJalaliDateSelected();
+
   String getNow();
+
   String getMonthNameByIndex(int monthIndex);
+
   bool isDisable(int item);
+
   void setArrowType(String type);
 }
 
 class MonthPickerModel extends BasePickerModel {
-  ValueNotifier dayNotifier;
-  int startSelectedInitDate;
-  String finalMonth;
-  int todayMonthNum;
-  List<int> disables = [];
+  late ValueNotifier dayNotifier;
+  late int startSelectedInitDate;
+  late String finalMonth;
+  late int todayMonthNum;
+  late List<int> disables = [];
+
   MonthPickerModel({
-    this.startSelectedInitDate,
-    this.disables,
+    required this.startSelectedInitDate,
+    required this.disables,
   }) {
     getJalaliDateSelected();
   }
@@ -71,16 +76,16 @@ class MonthPickerModel extends BasePickerModel {
 }
 
 class YearPickerModel extends BasePickerModel {
-  int startSelectedInitDate;
-  int _firstInitYear;
-  Jalali jDate;
-  List<int> disables = [];
-  List<int> _years = [];
-  String _arrowType = 'prev';
+  late int startSelectedInitDate;
+  late int _firstInitYear;
+  late Jalali jDate;
+  late List<int> disables = [];
+  late List<int> _years = [];
+  late String _arrowType = 'prev';
 
   YearPickerModel({
-    this.startSelectedInitDate,
-    this.disables,
+    required this.startSelectedInitDate,
+    required this.disables,
   }) {
     _firstInitYear = this.startSelectedInitDate;
     makeYears();
@@ -151,22 +156,22 @@ class YearPickerModel extends BasePickerModel {
 }
 
 class DatePickerModel extends BasePickerModel {
-  bool isRangeDate;
-  List<String> rangeSelectedDate;
-  String startRange;
-  String endRange;
-  List<String> disables = [];
-  Jalali jDate;
-  Jalali _orginJDate;
-  Jalali _selectedJDate;
-  List<dynamic> _allDaysOfTable = [];
-  String _arrowType;
+  late bool isRangeDate;
+  late List<String> rangeSelectedDate;
+  late String startRange;
+  late String endRange;
+  late List<String> disables = [];
+  late Jalali jDate;
+  late Jalali _orginJDate;
+  late Jalali _selectedJDate;
+  late List<dynamic> _allDaysOfTable = [];
+  late String _arrowType;
   final HeaderType headerType;
 
   DatePickerModel({
     this.headerType = HeaderType.mix,
-    this.rangeSelectedDate,
-    this.disables,
+    required this.rangeSelectedDate,
+    required this.disables,
     this.isRangeDate = false,
   }) {
     getJalaliDateSelected();
@@ -266,7 +271,7 @@ class DatePickerModel extends BasePickerModel {
     return false;
   }
 
-  bool isEndRanged(int day) {
+  bool? isEndRanged(int day) {
     if (rangeSelectedDate != null && rangeSelectedDate.length == 2) {
       Jalali ej = stringToJalali(rangeSelectedDate[1]);
       return jDate.copy(day: day) == ej;
@@ -416,12 +421,12 @@ class DatePickerModel extends BasePickerModel {
   bool setEditabelDate(String date) {
     try {
       final intRegex = RegExp(r'[\u06F0-\u06F90-9]');
-      List<String> years =
+      List<String?> years =
           intRegex.allMatches(date).map((m) => m.group(0)).toList();
 
       final stringRegex = RegExp(
           r'[\u0622\u0627\u0628\u067E\u062A-\u062C\u0686\u062D-\u0632\u0698\u0633-\u063A\u0641\u0642\u06A9\u06AF\u0644-\u0648\u06CC]');
-      List<String> months =
+      List<String?> months =
           stringRegex.allMatches(date).map((m) => m.group(0)).toList();
       int seasonNumber = seasonName.indexOf(months.join("")) + 1;
       String year = years.join("").toEnglish;
@@ -435,35 +440,35 @@ class DatePickerModel extends BasePickerModel {
 }
 
 class TimeLinePickerModel extends BasePickerModel {
-  final double widgetWidth;
+  late final double widgetWidth;
 
   /// Start Date in case user wants to show past dates
   /// If not provided calendar will start from now
-  final Jalali startDate;
+  late final Jalali startDate;
 
   /// End Date in case user wants to show past dates
-  final Jalali endDate;
+  late final Jalali endDate;
 
   /// Current Selected Date
-  final Jalali initialSelectedDate;
+  late final Jalali initialSelectedDate;
 
   /// Width of the selector
-  final double width;
+  late final double width;
 
   /// Height of the selector
-  final double height;
+  late final double height;
 
   /// Max limit up to which the dates are shown.
   /// Days are counted from the startDate to endDate
-  int daysCount;
+  late int daysCount;
 
   TimeLinePickerModel({
-    this.startDate,
-    this.endDate,
-    this.initialSelectedDate,
+    required this.startDate,
+    required this.endDate,
+    required this.initialSelectedDate,
     this.width = 60,
     this.height = 80,
-    this.widgetWidth,
+    required this.widgetWidth,
   }) {
     assert(!endDate.isBefore(startDate),
         '$endDate\'s must not be after it\'s $startDate.');
@@ -498,15 +503,16 @@ class TimeLinePickerModel extends BasePickerModel {
 
   /// if user add initialSelectedDate , jCurrentDate is initialSelectedDate
   /// otherwise jCurrentDate will be  jStartDate
-  Jalali jCurrentDate;
+  late Jalali jCurrentDate;
 
   /// Show date in screen
-  ValueNotifier<Jalali> jShownDate;
+  late ValueNotifier<Jalali> jShownDate;
 
   /// offset jCurrentDate from start of list
-  double jCurrentDateOffset;
+  late double jCurrentDateOffset;
+
   // offset of date from end to start
-  double jCurrentDateOffsetFromEnd;
+  late double jCurrentDateOffsetFromEnd;
 
   @override
   void getJalaliDateSelected() {}

@@ -7,9 +7,9 @@ import '../farsi_date_picker.dart';
 
 class AltMonthPicker extends StatefulWidget {
   final MonthPickerModel pickerModel;
-  final DatePickerTheme theme;
+  final FarsiDatePickerTheme theme;
   final DateChangedCallback onConfirm;
-  const AltMonthPicker({Key key, this.pickerModel, this.theme, this.onConfirm})
+  const AltMonthPicker({Key? key,required this.pickerModel, required this.theme, required   this.onConfirm})
       : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class AltMonthPicker extends StatefulWidget {
 
 class _AltMonthPickerState extends State<AltMonthPicker>
     with SingleTickerProviderStateMixin {
-  AnimationController animController;
+  AnimationController? animController;
   List<Widget> months = [];
 
   @override
@@ -28,12 +28,12 @@ class _AltMonthPickerState extends State<AltMonthPicker>
       vsync: this,
       duration: Duration(milliseconds: 1000),
     );
-    animController.forward();
+    animController!.forward();
   }
 
   @override
   void dispose() {
-    animController.dispose();
+    animController!.dispose();
     super.dispose();
   }
 
@@ -122,7 +122,7 @@ class _AltMonthPickerState extends State<AltMonthPicker>
                   thickness: 1,
                   indent: 10,
                   endIndent: 10,
-                  color: Colors.grey[300].withOpacity(.7),
+                  color: Colors.grey[300]!.withOpacity(.7),
                 ),
                 SizedBox(
                   height: 8,
@@ -140,9 +140,9 @@ class _AltMonthPickerState extends State<AltMonthPicker>
                         return Container(
                           padding: EdgeInsets.symmetric(vertical: 3),
                           child: AnimatedBuilder(
-                            animation: animController,
+                            animation: animController!,
                             builder: (context, child) => Opacity(
-                              opacity: animController.value,
+                              opacity: animController!.value,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
