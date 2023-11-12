@@ -1,17 +1,17 @@
-  
 
-# A persian (farsi, shamsi) date picker for flutter, inspired by material datetime picker.
 
-  
+# A persian (farsi, shamsi) date picker for flutter, inspired by material datetime picker alt_persian_date_picker.
+
+
 
 A Flutter persian date picker inspired by material datetime picker and based on [shamsi_date](https://pub.dartlang.org/packages/shamsi_date).
 
-  
+
 
 You can pick date / range date /  Month / Year .
 
-  
-  
+
+
 
 # Screenshots
 
@@ -19,42 +19,42 @@ Date Picker | Editable Date Picker | Ranged Date Picker | Seprate Header Date Pi
 --- | --- | --- | --- | --- | --- | --- 
 |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/datePicker.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_picker_editable.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_pickerranged.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_picker_seprate.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/month_picker.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/year_picker.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_picker_timeline.png) |
 
-  
-  
+
+
 
 ## Usage
 
-  
+
 
 Add it to your pubspec.yaml file:
 
-  
+
 
 ```yaml
 
 dependencies:
 
-alt_persian_datetime_picker: version
+farsi_date_picker: version
 
 ```
 
-  
+
 
 In your library add the following import:
 
-  
+
 
 ```dart
 
-import 'package:alt_persian_date_picker/farsi_date_picker.dart';
+import 'package:farsi_date_picker/farsi_date_picker.dart';
 
 ```
 
-  
+
 
 Here is an example how to use:
 
-  
+
 
 ```dart
 
@@ -93,4 +93,4 @@ Here is an example how to use:
 
 ##Pull request and feedback are always appreciated.
 
-###Contact me with `ali.tazik@gmail.com` .
+###Contact me with `fatemeshm12@gmail.com` .
