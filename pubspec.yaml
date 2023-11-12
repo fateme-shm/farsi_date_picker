@@ -1,0 +1,35 @@
+name: farsi_date_picker
+description: farsi date picker for flutter.
+version: 1.0.0
+homepage: https://github.com/fateme-shm/farsi_date_picker.git
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shamsi_date: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
