@@ -1,6 +1,6 @@
 
 
-# A persian (farsi, shamsi) date picker for flutter, inspired by material datetime picker alt_persian_date_picker.
+# A persian (farsi, shamsi) date picker for flutter, inspired by [alt_persian_date_picker](https://github.com/tazik561/alt_persian_date_picker)
 
 
 
@@ -13,13 +13,16 @@ You can pick date / range date /  Month / Year .
 
 
 
-# Screenshots
+[//]: # (# Screenshots)
 
-Date Picker | Editable Date Picker | Ranged Date Picker | Seprate Header Date Picker | Month Picker | Year Picker | Timeline Picker |
---- | --- | --- | --- | --- | --- | --- 
-|![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/datePicker.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_picker_editable.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_pickerranged.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_picker_seprate.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/month_picker.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/year_picker.png) |![](https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_picker_timeline.png) |
+[//]: # (Date Picker | Editable Date Picker | Ranged Date Picker | Seprate Header Date Picker | Month Picker | Year Picker | Timeline Picker |)
 
+[//]: # (--- | --- | --- | --- | --- | --- | --- )
 
+[//]: # (|![]&#40;https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/datePicker.png&#41; |![]&#40;https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_picker_editable.png&#41; |![]&#40;https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_pickerranged.png&#41; |![]&#40;https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_picker_seprate.png&#41; |![]&#40;https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/month_picker.png&#41; |![]&#40;https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/year_picker.png&#41; |![]&#40;https://raw.githubusercontent.com/tazik561/alt_persian_date_picker/main/images/date_picker_timeline.png&#41; |)
+
+[//]: # ()
+[//]: # ()
 
 
 ## Usage
